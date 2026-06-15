@@ -70,7 +70,7 @@ export function FeedList({ initialPosts }: FeedListProps) {
 
       {isLoading && posts.length === 0 && (
         <div className="flex justify-center py-8">
-          <Loader2 className="h-6 w-6 animate-spin text-[#3B1FDB]" />
+          <Loader2 className="h-6 w-6 animate-spin text-[#9B5941]" />
         </div>
       )}
 

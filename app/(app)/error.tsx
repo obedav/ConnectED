@@ -38,7 +38,7 @@ export default function Error({
 
       <Button
         onClick={() => unstable_retry()}
-        className="bg-[#3B1FDB] text-white hover:bg-[#3018c0] focus-visible:ring-[#3B1FDB]/40"
+        className="bg-[#9B5941] text-white hover:bg-[#7D4532] focus-visible:ring-[#9B5941]/40"
       >
         Try again
       </Button>

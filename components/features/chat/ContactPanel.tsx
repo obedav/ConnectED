@@ -72,7 +72,7 @@ export function ContactPanel({ partner, onBack }: ContactPanelProps) {
         <Button
           size="sm"
           variant="outline"
-          className="w-full border-[#3B1FDB] text-[#3B1FDB] hover:bg-[#EDE9FF]"
+          className="w-full border-[#9B5941] text-[#9B5941] hover:bg-[#F5EDE8]"
         >
           View Profile
         </Button>
@@ -84,7 +84,7 @@ export function ContactPanel({ partner, onBack }: ContactPanelProps) {
             <button
               key={label}
               aria-label={label}
-              className="flex flex-col items-center gap-1 rounded-lg p-2 text-gray-400 transition-colors hover:bg-gray-50 hover:text-[#3B1FDB]"
+              className="flex flex-col items-center gap-1 rounded-lg p-2 text-gray-400 transition-colors hover:bg-gray-50 hover:text-[#9B5941]"
             >
               <Icon className="h-5 w-5" />
               <span className="text-[10px]">{label}</span>

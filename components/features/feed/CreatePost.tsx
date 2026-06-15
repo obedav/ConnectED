@@ -7,6 +7,7 @@ import { Button } from '@/components/ui'
 import { colorFromId } from '@/lib/utils/colorHash'
 import { cn } from '@/lib/utils/cn'
 import { useUser } from '@/lib/hooks/useUser'
+import { showToast } from '@/lib/stores/toastStore'
 import type { PostWithAuthor, PostsPage } from '@/types/feed'
 
 const MAX_CHARS = 500
@@ -45,6 +46,7 @@ export function CreatePost() {
     const tempPost: PostWithAuthor = {
       id: tempId,
       author_id: user.id,
+      group_id: null,
       content: trimmed,
       likes_count: 0,
       comments_count: 0,
@@ -88,6 +90,7 @@ export function CreatePost() {
 
       const realPost = json.post
       if (realPost) {
+        showToast('Post published!', 'success')
         // Swap temp post for the real one
         queryClient.setQueryData<InfiniteData<PostsPage, string>>(
           ['posts'],
@@ -189,7 +192,7 @@ export function CreatePost() {
           <Button
             type="submit"
             disabled={!content.trim() || isOverLimit || isPosting || !user}
-            className="bg-[#3B1FDB] px-5 text-white hover:bg-[#3018c0] focus-visible:ring-[#3B1FDB]/40 disabled:opacity-40"
+            className="bg-[#9B5941] px-5 text-white hover:bg-[#7D4532] focus-visible:ring-[#9B5941]/40 disabled:opacity-40"
             size="sm"
           >
             {isPosting ? 'Posting…' : 'Post'}

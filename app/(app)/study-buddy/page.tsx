@@ -1,7 +1,13 @@
+import type { Metadata } from 'next'
 import { createClient } from '@/lib/supabase/server'
 import { PageHeader } from '@/components/layout/PageHeader'
 import { PreferencesForm } from '@/components/features/studybuddy/PreferencesForm'
 import { BuddyResults } from '@/components/features/studybuddy/BuddyResults'
+
+export const metadata: Metadata = {
+  title: 'Study Buddy',
+  description: 'Find a classmate who matches your study style and subjects.',
+}
 
 export default async function StudyBuddyPage() {
   const supabase = await createClient()

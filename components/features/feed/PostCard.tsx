@@ -77,7 +77,7 @@ export function PostCard({ post, currentUserId }: PostCardProps) {
           <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5">
             <span className="text-sm font-semibold text-gray-900">{displayName}</span>
             {union && (
-              <Badge className="bg-[#EDE9FF] text-[#3B1FDB]">Student Union</Badge>
+              <Badge className="bg-[#F5EDE8] text-[#9B5941]">Student Union</Badge>
             )}
             {post.author?.year_group && (
               <span className="text-xs text-gray-400">{post.author.year_group}</span>
@@ -123,7 +123,7 @@ export function PostCard({ post, currentUserId }: PostCardProps) {
         {/* Comment */}
         <button
           aria-label="View comments"
-          className="flex items-center gap-1.5 text-sm text-gray-400 transition-colors hover:text-[#3B1FDB]"
+          className="flex items-center gap-1.5 text-sm text-gray-400 transition-colors hover:text-[#9B5941]"
         >
           <MessageCircle className="h-4 w-4" strokeWidth={1.5} />
           <span>{post.comments_count}</span>
@@ -132,7 +132,7 @@ export function PostCard({ post, currentUserId }: PostCardProps) {
         {/* Share */}
         <button
           aria-label="Share post"
-          className="ml-auto flex items-center gap-1.5 text-sm text-gray-400 transition-colors hover:text-[#3B1FDB]"
+          className="ml-auto flex items-center gap-1.5 text-sm text-gray-400 transition-colors hover:text-[#9B5941]"
         >
           <Share2 className="h-4 w-4" strokeWidth={1.5} />
         </button>

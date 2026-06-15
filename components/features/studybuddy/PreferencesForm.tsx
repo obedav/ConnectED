@@ -82,14 +82,14 @@ function TagInput({ tags, onChange, placeholder, error }: TagInputProps) {
   return (
     <div
       className={cn(
-        'flex min-h-[44px] flex-wrap items-center gap-1.5 rounded-lg border bg-white px-3 py-2 focus-within:ring-2 focus-within:ring-[#3B1FDB]/20',
+        'flex min-h-[44px] flex-wrap items-center gap-1.5 rounded-lg border bg-white px-3 py-2 focus-within:ring-2 focus-within:ring-[#9B5941]/20',
         error ? 'border-red-300' : 'border-gray-200'
       )}
     >
       {tags.map((tag) => (
         <span
           key={tag}
-          className="flex items-center gap-1 rounded-full bg-[#EDE9FF] px-2.5 py-0.5 text-xs font-medium text-[#3B1FDB]"
+          className="flex items-center gap-1 rounded-full bg-[#F5EDE8] px-2.5 py-0.5 text-xs font-medium text-[#9B5941]"
         >
           {tag}
           <button
@@ -133,9 +133,9 @@ function StepIndicator({ current }: StepIndicatorProps) {
                 className={cn(
                   'flex h-8 w-8 items-center justify-center rounded-full text-sm font-medium transition-colors',
                   done
-                    ? 'bg-[#3B1FDB] text-white'
+                    ? 'bg-[#9B5941] text-white'
                     : active
-                    ? 'bg-[#3B1FDB] text-white'
+                    ? 'bg-[#9B5941] text-white'
                     : 'bg-gray-100 text-gray-400'
                 )}
               >
@@ -144,7 +144,7 @@ function StepIndicator({ current }: StepIndicatorProps) {
               <span
                 className={cn(
                   'text-[11px] font-medium',
-                  active ? 'text-[#3B1FDB]' : 'text-gray-400'
+                  active ? 'text-[#9B5941]' : 'text-gray-400'
                 )}
               >
                 {label}
@@ -154,7 +154,7 @@ function StepIndicator({ current }: StepIndicatorProps) {
               <div
                 className={cn(
                   'mb-5 h-0.5 w-16',
-                  current > n ? 'bg-[#3B1FDB]' : 'bg-gray-200'
+                  current > n ? 'bg-[#9B5941]' : 'bg-gray-200'
                 )}
               />
             )}
@@ -241,8 +241,8 @@ export function PreferencesForm() {
                     className={cn(
                       'rounded-full border px-4 py-1.5 text-sm transition-colors',
                       academicLevel === year
-                        ? 'border-[#3B1FDB] bg-[#3B1FDB] text-white'
-                        : 'border-gray-200 text-gray-600 hover:border-[#3B1FDB] hover:text-[#3B1FDB]'
+                        ? 'border-[#9B5941] bg-[#9B5941] text-white'
+                        : 'border-gray-200 text-gray-600 hover:border-[#9B5941] hover:text-[#9B5941]'
                     )}
                   >
                     {year}
@@ -315,14 +315,14 @@ export function PreferencesForm() {
                     className={cn(
                       'flex items-center gap-2.5 rounded-xl border px-4 py-3 text-left text-sm transition-colors',
                       selected
-                        ? 'border-[#3B1FDB] bg-[#EDE9FF] text-[#3B1FDB]'
-                        : 'border-gray-200 text-gray-600 hover:border-[#3B1FDB]/50 hover:bg-gray-50'
+                        ? 'border-[#9B5941] bg-[#F5EDE8] text-[#9B5941]'
+                        : 'border-gray-200 text-gray-600 hover:border-[#9B5941]/50 hover:bg-gray-50'
                     )}
                   >
                     <span
                       className={cn(
                         'flex h-4 w-4 shrink-0 items-center justify-center rounded border',
-                        selected ? 'border-[#3B1FDB] bg-[#3B1FDB]' : 'border-gray-300'
+                        selected ? 'border-[#9B5941] bg-[#9B5941]' : 'border-gray-300'
                       )}
                     >
                       {selected && <Check className="h-2.5 w-2.5 text-white" />}
@@ -355,7 +355,7 @@ export function PreferencesForm() {
                 <dt className="mb-2 font-medium text-gray-500">Studying</dt>
                 <dd className="flex flex-wrap gap-1.5">
                   {subjectsStudying.map((s) => (
-                    <span key={s} className="rounded-full bg-[#EDE9FF] px-2.5 py-0.5 text-xs font-medium text-[#3B1FDB]">{s}</span>
+                    <span key={s} className="rounded-full bg-[#F5EDE8] px-2.5 py-0.5 text-xs font-medium text-[#9B5941]">{s}</span>
                   ))}
                 </dd>
               </div>
@@ -401,7 +401,7 @@ export function PreferencesForm() {
             <Button
               type="button"
               onClick={() => void handleNext()}
-              className="bg-[#3B1FDB] text-white hover:bg-[#3018c0]"
+              className="bg-[#9B5941] text-white hover:bg-[#7D4532]"
             >
               Next →
             </Button>
@@ -410,7 +410,7 @@ export function PreferencesForm() {
               type="button"
               disabled={isSubmitting}
               onClick={() => void handleSubmit(onSubmit)()}
-              className="bg-[#3B1FDB] text-white hover:bg-[#3018c0] disabled:opacity-50"
+              className="bg-[#9B5941] text-white hover:bg-[#7D4532] disabled:opacity-50"
             >
               {isSubmitting ? 'Finding matches…' : 'Find my matches'}
             </Button>

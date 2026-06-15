@@ -71,7 +71,7 @@ function NavLink({ item, pathname }: { item: NavItem; pathname: string }) {
       className={cn(
         'flex items-center gap-3 border-l-[3px] px-4 py-2 text-sm transition-colors',
         isActive
-          ? 'border-[#3B1FDB] bg-[#EDE9FF] font-medium text-[#3B1FDB]'
+          ? 'border-[#9B5941] bg-[#F5EDE8] font-medium text-[#9B5941]'
           : 'border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900'
       )}
     >
@@ -85,7 +85,7 @@ export function Sidebar() {
   const pathname = usePathname()
 
   return (
-    <aside className="flex w-[220px] shrink-0 flex-col overflow-y-auto border-r border-gray-100 bg-white">
+    <aside className="hidden w-[220px] shrink-0 flex-col overflow-y-auto border-r border-gray-100 bg-white md:flex">
       {/* Discover */}
       <SectionLabel label="Discover" />
       <nav aria-label="Discover navigation">

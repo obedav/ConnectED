@@ -68,7 +68,7 @@ export function ConversationList({
                   onClick={() => onSelect(partner.id)}
                   className={cn(
                     'flex w-full items-center gap-3 rounded-xl p-3 text-left transition-colors',
-                    isActive ? 'bg-[#EDE9FF]' : 'hover:bg-gray-50'
+                    isActive ? 'bg-[#F5EDE8]' : 'hover:bg-gray-50'
                   )}
                 >
                   <div className="relative shrink-0">
@@ -81,7 +81,7 @@ export function ConversationList({
                         className={cn(
                           'truncate text-sm',
                           isActive
-                            ? 'font-semibold text-[#3B1FDB]'
+                            ? 'font-semibold text-[#9B5941]'
                             : 'font-medium text-gray-900'
                         )}
                       >
@@ -94,7 +94,7 @@ export function ConversationList({
                     <div className="flex items-center justify-between gap-2">
                       <span className="truncate text-xs text-gray-400">{preview}</span>
                       {unreadCount > 0 && (
-                        <span className="shrink-0 rounded-full bg-[#3B1FDB] px-1.5 py-0.5 text-[10px] font-medium text-white">
+                        <span className="shrink-0 rounded-full bg-[#9B5941] px-1.5 py-0.5 text-[10px] font-medium text-white">
                           {unreadCount}
                         </span>
                       )}

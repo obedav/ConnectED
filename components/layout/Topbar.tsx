@@ -64,7 +64,7 @@ function AvatarMenu({
         onClick={() => setOpen((v) => !v)}
         aria-label="Open user menu"
         aria-expanded={open}
-        className="flex h-8 w-8 items-center justify-center rounded-full bg-[#A855F7] text-xs font-bold text-white ring-2 ring-white/20 transition-opacity hover:opacity-90"
+        className="flex h-8 w-8 items-center justify-center rounded-full bg-[#C4865A] text-xs font-bold text-white ring-2 ring-white/20 transition-opacity hover:opacity-90"
       >
         {initials}
       </button>
@@ -104,7 +104,7 @@ export function Topbar() {
   }
 
   return (
-    <header className="sticky top-0 z-50 flex h-14 shrink-0 items-center justify-between bg-[#1A0A6B] px-5">
+    <header className="sticky top-0 z-50 flex h-14 shrink-0 items-center justify-between bg-[#3D1F14] px-5">
       {/* Left: logo */}
       <Link href="/feed" className="flex items-center">
         <Logo

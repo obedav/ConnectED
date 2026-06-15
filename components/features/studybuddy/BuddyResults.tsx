@@ -121,7 +121,7 @@ function BuddyCard({
             {match.study_styles?.map((s) => (
               <span
                 key={s}
-                className="rounded-full border border-[#3B1FDB]/20 bg-[#EDE9FF] px-2.5 py-0.5 text-[11px] text-[#3B1FDB]"
+                className="rounded-full border border-[#9B5941]/20 bg-[#F5EDE8] px-2.5 py-0.5 text-[11px] text-[#9B5941]"
               >
                 {s}
               </span>
@@ -139,7 +139,7 @@ function BuddyCard({
           'mt-auto w-full',
           isSent
             ? 'cursor-default bg-gray-100 text-gray-400 hover:bg-gray-100'
-            : 'bg-[#3B1FDB] text-white hover:bg-[#3018c0]'
+            : 'bg-[#9B5941] text-white hover:bg-[#7D4532]'
         )}
       >
         {isSent ? 'Request sent' : 'Connect'}
@@ -213,7 +213,7 @@ export function BuddyResults({ myProfile, currentUserId }: BuddyResultsProps) {
   if (matches.length === 0) {
     return (
       <div className="flex flex-col items-center gap-3 rounded-2xl border border-gray-100 bg-white py-16 text-center shadow-sm">
-        <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#EDE9FF] text-3xl">
+        <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#F5EDE8] text-3xl">
           🔍
         </div>
         <p className="font-semibold text-gray-700">No matches found yet</p>

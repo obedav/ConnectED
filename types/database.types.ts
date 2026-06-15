@@ -198,6 +198,7 @@ export interface Database {
           id: string
           name: string
           description: string | null
+          type: 'Study group' | 'Project group' | 'General' | null
           creator_id: string | null
           is_interest_group: boolean
           member_count: number
@@ -207,6 +208,7 @@ export interface Database {
           id?: string
           name: string
           description?: string | null
+          type?: 'Study group' | 'Project group' | 'General' | null
           creator_id?: string | null
           is_interest_group?: boolean
           member_count?: number
@@ -216,6 +218,7 @@ export interface Database {
           id?: string
           name?: string
           description?: string | null
+          type?: 'Study group' | 'Project group' | 'General' | null
           creator_id?: string | null
           is_interest_group?: boolean
           member_count?: number
@@ -430,6 +433,7 @@ export interface Database {
         Row: {
           id: string
           author_id: string | null
+          group_id: string | null
           content: string
           likes_count: number
           comments_count: number
@@ -438,6 +442,7 @@ export interface Database {
         Insert: {
           id?: string
           author_id?: string | null
+          group_id?: string | null
           content: string
           likes_count?: number
           comments_count?: number
@@ -446,6 +451,7 @@ export interface Database {
         Update: {
           id?: string
           author_id?: string | null
+          group_id?: string | null
           content?: string
           likes_count?: number
           comments_count?: number
@@ -457,6 +463,13 @@ export interface Database {
             columns: ['author_id']
             isOneToOne: false
             referencedRelation: 'profiles'
+            referencedColumns: ['id']
+          },
+          {
+            foreignKeyName: 'posts_group_id_fkey'
+            columns: ['group_id']
+            isOneToOne: false
+            referencedRelation: 'groups'
             referencedColumns: ['id']
           },
         ]

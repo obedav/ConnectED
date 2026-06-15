@@ -6,6 +6,7 @@ import { Avatar } from '@/components/ui'
 import { colorFromId } from '@/lib/utils/colorHash'
 import { cn } from '@/lib/utils/cn'
 import { useMessages } from '@/lib/hooks/useMessages'
+import { showToast } from '@/lib/stores/toastStore'
 import type { Profile } from '@/types/database.types'
 import type { MessageWithSender } from '@/types/chat'
 
@@ -94,6 +95,8 @@ export function ChatWindow({ partner, currentUserId, onBack, onContactClick }: C
     setIsSending(true)
     try {
       await sendMessage(trimmed)
+    } catch {
+      showToast('Failed to send message', 'error')
     } finally {
       setIsSending(false)
     }
@@ -115,8 +118,8 @@ export function ChatWindow({ partner, currentUserId, onBack, onContactClick }: C
   if (!partner) {
     return (
       <div className="flex h-full flex-col items-center justify-center gap-2 bg-gray-50">
-        <div className="h-16 w-16 rounded-full bg-[#EDE9FF] flex items-center justify-center">
-          <Send className="h-7 w-7 text-[#3B1FDB]" />
+        <div className="h-16 w-16 rounded-full bg-[#F5EDE8] flex items-center justify-center">
+          <Send className="h-7 w-7 text-[#9B5941]" />
         </div>
         <p className="text-sm font-medium text-gray-700">Your Messages</p>
         <p className="text-xs text-gray-400">Select a conversation to start chatting</p>
@@ -152,7 +155,7 @@ export function ChatWindow({ partner, currentUserId, onBack, onContactClick }: C
         <button
           onClick={onContactClick}
           aria-label="Contact info"
-          className="rounded-lg p-2 text-gray-400 transition-colors hover:bg-gray-100 hover:text-[#3B1FDB]"
+          className="rounded-lg p-2 text-gray-400 transition-colors hover:bg-gray-100 hover:text-[#9B5941]"
         >
           <Info className="h-4 w-4" />
         </button>
@@ -202,7 +205,7 @@ export function ChatWindow({ partner, currentUserId, onBack, onContactClick }: C
                         className={cn(
                           'max-w-[70%] rounded-2xl px-4 py-2 text-sm leading-relaxed',
                           isMine
-                            ? 'rounded-br-sm bg-[#3B1FDB] text-white'
+                            ? 'rounded-br-sm bg-[#9B5941] text-white'
                             : 'rounded-bl-sm bg-gray-100 text-gray-800'
                         )}
                       >
@@ -226,7 +229,7 @@ export function ChatWindow({ partner, currentUserId, onBack, onContactClick }: C
         <div className="flex items-end gap-2">
           <button
             aria-label="Emoji"
-            className="mb-1 shrink-0 rounded-lg p-1.5 text-gray-400 transition-colors hover:bg-gray-100 hover:text-[#3B1FDB]"
+            className="mb-1 shrink-0 rounded-lg p-1.5 text-gray-400 transition-colors hover:bg-gray-100 hover:text-[#9B5941]"
           >
             <Smile className="h-5 w-5" />
           </button>
@@ -248,14 +251,14 @@ export function ChatWindow({ partner, currentUserId, onBack, onContactClick }: C
               onClick={() => void handleSend()}
               disabled={isSending}
               aria-label="Send message"
-              className="mb-1 shrink-0 rounded-lg bg-[#3B1FDB] p-2 text-white transition-colors hover:bg-[#3018c0] disabled:opacity-50"
+              className="mb-1 shrink-0 rounded-lg bg-[#9B5941] p-2 text-white transition-colors hover:bg-[#7D4532] disabled:opacity-50"
             >
               <Send className="h-4 w-4" />
             </button>
           ) : (
             <button
               aria-label="Voice message"
-              className="mb-1 shrink-0 rounded-lg p-2 text-gray-400 transition-colors hover:bg-gray-100 hover:text-[#3B1FDB]"
+              className="mb-1 shrink-0 rounded-lg p-2 text-gray-400 transition-colors hover:bg-gray-100 hover:text-[#9B5941]"
             >
               <Mic className="h-4 w-4" />
             </button>

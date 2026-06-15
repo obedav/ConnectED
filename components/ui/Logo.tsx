@@ -29,7 +29,7 @@ export function Logo({ size = 'md', className }: LogoProps) {
       </div>
       <span className={cn('font-bold tracking-tight leading-none', s.text)}>
         <span className="text-gray-900">Connect</span>
-        <span className="text-[#A855F7]">ED</span>
+        <span className="text-[#C4865A]">ED</span>
       </span>
     </div>
   )

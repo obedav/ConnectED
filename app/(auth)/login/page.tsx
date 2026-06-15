@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { Suspense, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
@@ -19,7 +19,7 @@ const schema = z.object({
 
 type FormData = z.infer<typeof schema>
 
-export default function LoginPage() {
+function LoginForm() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const [authError, setAuthError] = useState<string | null>(null)
@@ -47,7 +47,6 @@ export default function LoginPage() {
 
   return (
     <AuthCard>
-      {/* Header */}
       <div className="flex flex-col items-center gap-5">
         <Logo size="lg" />
         <div className="text-center">
@@ -56,14 +55,12 @@ export default function LoginPage() {
         </div>
       </div>
 
-      {/* Auth-level error banner */}
       {authError && (
         <div className="mt-6 rounded-lg bg-red-50 px-4 py-3 text-sm text-red-700">
           {authError}
         </div>
       )}
 
-      {/* Form */}
       <form
         onSubmit={handleSubmit(onSubmit)}
         noValidate
@@ -93,7 +90,7 @@ export default function LoginPage() {
             <div className="flex justify-end">
               <Link
                 href="/forgot-password"
-                className="text-xs text-[#3B1FDB] underline-offset-2 hover:underline"
+                className="text-xs text-[#9B5941] underline-offset-2 hover:underline"
               >
                 Forgot password?
               </Link>
@@ -104,25 +101,31 @@ export default function LoginPage() {
         <Button
           type="submit"
           disabled={isSubmitting}
-          className="mt-2 w-full bg-[#3B1FDB] text-white hover:bg-[#3018c0] focus-visible:ring-[#3B1FDB]/40"
+          className="mt-2 w-full bg-[#9B5941] text-white hover:bg-[#7D4532] focus-visible:ring-[#9B5941]/40"
         >
           {isSubmitting ? 'Signing in…' : 'Log In'}
         </Button>
       </form>
 
-      {/* Divider */}
       <Divider label="or sign up" />
 
-      {/* Secondary CTA */}
       <Button
         type="button"
         variant="outline"
-        className="w-full text-[#3B1FDB] hover:bg-[#3B1FDB]/5 focus-visible:ring-[#3B1FDB]/40"
+        className="w-full text-[#9B5941] hover:bg-[#9B5941]/5 focus-visible:ring-[#9B5941]/40"
         onClick={() => router.push('/signup')}
       >
         Create account
       </Button>
     </AuthCard>
+  )
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense>
+      <LoginForm />
+    </Suspense>
   )
 }
 
