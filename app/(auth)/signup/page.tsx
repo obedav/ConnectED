@@ -35,11 +35,26 @@ function SignUpForm() {
   const {
     register,
     handleSubmit,
+    setError,
     formState: { errors, isSubmitting },
   } = useForm<FormData>({ resolver: zodResolver(schema) })
 
   const onSubmit = async ({ username, email, password }: FormData) => {
     setAuthError(null)
+
+    const { data: isTaken, error: rpcError } = await supabase.rpc('is_username_taken', {
+      uname: username,
+    })
+
+    if (rpcError) {
+      setAuthError('Could not verify username availability. Please try again.')
+      return
+    }
+
+    if (isTaken) {
+      setError('username', { message: 'Username is already taken' })
+      return
+    }
 
     const { error } = await supabase.auth.signUp({
       email,
@@ -48,7 +63,11 @@ function SignUpForm() {
     })
 
     if (error) {
-      setAuthError(error.message)
+      setAuthError(
+        error.message === 'Database error saving new user'
+          ? 'Failed to create your account. Please try again or contact support.'
+          : error.message
+      )
       return
     }
 
