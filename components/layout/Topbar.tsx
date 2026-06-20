@@ -95,17 +95,9 @@ function AvatarMenu({
 
 export function Topbar() {
   const { user, profile } = useUser()
-  const router = useRouter()
-  const supabase = createClient()
-
-  async function handleSignOut() {
-    await supabase.auth.signOut()
-    router.push('/login')
-  }
 
   return (
     <header className="sticky top-0 z-50 flex h-14 shrink-0 items-center justify-between bg-[#3D1F14] px-5">
-      {/* Left: logo */}
       <Link href="/feed" className="flex items-center">
         <Logo
           size="sm"
@@ -113,27 +105,15 @@ export function Topbar() {
         />
       </Link>
 
-      {/* Right: actions */}
-      <div className="flex items-center gap-3">
-        {/* Notification bell */}
+      <div className="flex items-center gap-2">
         <button
           aria-label="Notifications"
-          className="flex h-8 w-8 items-center justify-center rounded-full text-white/70 transition-colors hover:bg-white/10 hover:text-white"
+          className="relative flex h-8 w-8 items-center justify-center rounded-full text-white/70 transition-colors hover:bg-white/10 hover:text-white"
         >
-          <Bell className="h-4.5 w-4.5 h-[18px] w-[18px]" />
+          <Bell className="h-[18px] w-[18px]" />
         </button>
 
-        {/* Avatar + dropdown */}
         <AvatarMenu profile={profile} user={user} />
-
-        {/* Direct log-out button */}
-        <button
-          onClick={handleSignOut}
-          className="hidden items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-medium text-white/70 transition-colors hover:bg-white/10 hover:text-white sm:flex"
-        >
-          <LogOut className="h-3.5 w-3.5" />
-          Log out
-        </button>
       </div>
     </header>
   )

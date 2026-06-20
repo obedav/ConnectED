@@ -66,7 +66,7 @@ export function PostCard({ post, currentUserId }: PostCardProps) {
   }
 
   return (
-    <article className="rounded-2xl border border-gray-100 bg-white p-5 shadow-sm">
+    <article className="rounded-2xl border border-gray-100 bg-white p-5 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md">
       {/* Header */}
       <div className="flex items-start gap-3">
         <Avatar

@@ -50,6 +50,7 @@ const editSchema = z.object({
   bio: z.string().max(500, 'Bio too long').optional(),
   year_group: z.string().optional(),
   house: z.string().max(50).optional(),
+  subjects_raw: z.string().optional(),
 })
 
 type EditValues = z.infer<typeof editSchema>
@@ -81,6 +82,7 @@ function EditProfileModal({
       bio: profile.bio ?? '',
       year_group: profile.year_group ?? '',
       house: profile.house ?? '',
+      subjects_raw: (profile.subjects ?? []).join(', '),
     },
   })
 
@@ -123,12 +125,18 @@ function EditProfileModal({
       avatarUrl = `${publicUrl}?v=${Date.now()}`
     }
 
+    const subjects = (values.subjects_raw ?? '')
+      .split(',')
+      .map((s) => s.trim())
+      .filter(Boolean)
+
     const base: ProfileUpdate = {
       full_name: values.full_name?.trim() || null,
       username: values.username,
       bio: values.bio?.trim() || null,
       year_group: (values.year_group || null) as ProfileUpdate['year_group'],
       house: values.house?.trim() || null,
+      subjects: subjects.length > 0 ? subjects : null,
     }
     const payload: ProfileUpdate = avatarUrl ? { ...base, avatar_url: avatarUrl } : base
 
@@ -251,6 +259,16 @@ function EditProfileModal({
               <label className="mb-1.5 block text-sm font-medium text-gray-700">House</label>
               <Input {...register('house')} placeholder="Your house" />
             </div>
+          </div>
+
+          {/* Subjects */}
+          <div>
+            <label className="mb-1.5 block text-sm font-medium text-gray-700">Subjects</label>
+            <Input
+              {...register('subjects_raw')}
+              placeholder="Maths, Physics, English…"
+            />
+            <p className="mt-1 text-xs text-gray-400">Separate with commas</p>
           </div>
 
           {/* Bio */}

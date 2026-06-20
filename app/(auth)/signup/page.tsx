@@ -42,7 +42,8 @@ function SignUpForm() {
   const onSubmit = async ({ username, email, password }: FormData) => {
     setAuthError(null)
 
-    const { data: isTaken, error: rpcError } = await supabase.rpc('is_username_taken', {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { data: isTaken, error: rpcError } = await (supabase as any).rpc('is_username_taken', {
       uname: username,
     })
 

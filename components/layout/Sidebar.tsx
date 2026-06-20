@@ -94,9 +94,8 @@ export function Sidebar() {
         ))}
       </nav>
 
-      <div className="mx-4 my-2 border-t border-gray-100" />
-
-      {/* Feature shortcuts */}
+      {/* Features */}
+      <SectionLabel label="Features" />
       <nav aria-label="Feature navigation">
         {featureLinks.map((item) => (
           <NavLink key={item.href} item={item} pathname={pathname} />
@@ -104,7 +103,6 @@ export function Sidebar() {
       </nav>
 
       {/* Library */}
-      <div className="mx-4 mt-2 border-t border-gray-100" />
       <SectionLabel label="Library" />
       <nav aria-label="Library navigation">
         {libraryLinks.map((item) => (
