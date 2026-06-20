@@ -5,7 +5,7 @@ import { ToastProvider } from '@/components/ui/ToastProvider'
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex h-screen flex-col overflow-hidden bg-gray-50">
+    <div className="flex h-screen flex-col overflow-hidden bg-[#F4F1EE]">
       <Topbar />
       <div className="flex flex-1 overflow-hidden">
         <Sidebar />

@@ -2,7 +2,7 @@ import React from 'react'
 import { cn } from '@/lib/utils/cn'
 
 function Pulse({ className }: { className?: string }) {
-  return <div className={cn('animate-pulse rounded-lg bg-gray-100', className)} />
+  return <div className={cn('shimmer rounded-lg', className)} />
 }
 
 // ── Post card ────────────────────────────────────────────────────────────────

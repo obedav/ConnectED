@@ -29,21 +29,21 @@ interface NavItem {
 }
 
 const discoverLinks: NavItem[] = [
-  { label: 'Feed',           href: '/feed',         icon: Rss          },
-  { label: 'Students League',href: '/students',     icon: Radio        },
-  { label: 'Profile',        href: '/profile',      icon: User         },
-  { label: 'Student Info',   href: '/student-info', icon: GraduationCap},
+  { label: 'Feed',            href: '/feed',         icon: Rss           },
+  { label: 'Students League', href: '/students',     icon: Radio         },
+  { label: 'Profile',         href: '/profile',      icon: User          },
+  { label: 'Student Info',    href: '/student-info', icon: GraduationCap },
 ]
 
 const featureLinks: NavItem[] = [
-  { label: 'Study Buddy',      href: '/study-buddy',  icon: Users        },
-  { label: 'Notes Hub',        href: '/notes',        icon: FileText     },
-  { label: 'Peer Tutors',      href: '/tutors',       icon: BookOpen     },
-  { label: 'Chats',            href: '/chats',        icon: MessageSquare},
-  { label: 'Events',           href: '/events',       icon: CalendarDays },
-  { label: 'Lost & Found',     href: '/lost-found',   icon: Search       },
-  { label: 'Suggestions',      href: '/suggestions',  icon: Lightbulb    },
-  { label: 'Academic Updates', href: '/academic',     icon: Bell         },
+  { label: 'Study Buddy',      href: '/study-buddy',  icon: Users         },
+  { label: 'Notes Hub',        href: '/notes',        icon: FileText      },
+  { label: 'Peer Tutors',      href: '/tutors',       icon: BookOpen      },
+  { label: 'Chats',            href: '/chats',        icon: MessageSquare },
+  { label: 'Events',           href: '/events',       icon: CalendarDays  },
+  { label: 'Lost & Found',     href: '/lost-found',   icon: Search        },
+  { label: 'Suggestions',      href: '/suggestions',  icon: Lightbulb     },
+  { label: 'Academic Updates', href: '/academic',     icon: Bell          },
 ]
 
 const libraryLinks: NavItem[] = [
@@ -54,25 +54,24 @@ const libraryLinks: NavItem[] = [
 
 function SectionLabel({ label }: { label: string }) {
   return (
-    <p className="px-4 pb-1 pt-5 text-[10px] font-semibold uppercase tracking-wider text-gray-400 first:pt-4">
+    <p className="mb-1 mt-5 px-4 text-[10px] font-bold uppercase tracking-widest text-gray-400/80 first:mt-4">
       {label}
     </p>
   )
 }
 
 function NavLink({ item, pathname }: { item: NavItem; pathname: string }) {
-  const isActive =
-    pathname === item.href || pathname.startsWith(item.href + '/')
+  const isActive = pathname === item.href || pathname.startsWith(item.href + '/')
   const Icon = item.icon
 
   return (
     <Link
       href={item.href}
       className={cn(
-        'flex items-center gap-3 border-l-[3px] px-4 py-2 text-sm transition-colors',
+        'mx-2 flex items-center gap-2.5 rounded-lg px-3 py-2 text-sm font-medium transition-all duration-150',
         isActive
-          ? 'border-[#9B5941] bg-[#F5EDE8] font-medium text-[#9B5941]'
-          : 'border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+          ? 'bg-[#9B5941] text-white shadow-sm'
+          : 'text-gray-500 hover:bg-gray-100 hover:text-gray-900'
       )}
     >
       <Icon className="h-4 w-4 shrink-0" />
@@ -86,7 +85,6 @@ export function Sidebar() {
 
   return (
     <aside className="hidden w-[220px] shrink-0 flex-col overflow-y-auto border-r border-gray-100 bg-white md:flex">
-      {/* Discover */}
       <SectionLabel label="Discover" />
       <nav aria-label="Discover navigation">
         {discoverLinks.map((item) => (
@@ -94,7 +92,6 @@ export function Sidebar() {
         ))}
       </nav>
 
-      {/* Features */}
       <SectionLabel label="Features" />
       <nav aria-label="Feature navigation">
         {featureLinks.map((item) => (
@@ -102,7 +99,6 @@ export function Sidebar() {
         ))}
       </nav>
 
-      {/* Library */}
       <SectionLabel label="Library" />
       <nav aria-label="Library navigation">
         {libraryLinks.map((item) => (

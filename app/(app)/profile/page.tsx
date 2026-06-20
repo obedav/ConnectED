@@ -358,11 +358,19 @@ export default function ProfilePage() {
   if (isLoading || !user || !profile) {
     return (
       <div className="space-y-4">
-        <div className="animate-pulse overflow-hidden rounded-2xl bg-white shadow-sm">
-          <div className="h-36 bg-gray-200" />
+        <div className="overflow-hidden rounded-2xl bg-white shadow-[0_1px_4px_rgba(0,0,0,0.07),0_0_0_1px_rgba(0,0,0,0.04)]">
+          <div className="shimmer h-40" />
           <div className="space-y-3 p-6 pt-14">
-            <div className="h-5 w-40 rounded bg-gray-100" />
-            <div className="h-4 w-24 rounded bg-gray-100" />
+            <div className="shimmer h-5 w-44 rounded-lg" />
+            <div className="shimmer h-4 w-28 rounded-lg" />
+            <div className="mt-5 flex gap-8 border-t border-gray-50 pt-5">
+              {[1, 2, 3].map((i) => (
+                <div key={i} className="space-y-1 text-center">
+                  <div className="shimmer mx-auto h-6 w-8 rounded-lg" />
+                  <div className="shimmer h-3 w-16 rounded" />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -374,55 +382,61 @@ export default function ProfilePage() {
   const displayName = profile.full_name ?? profile.username
 
   return (
-    <div className="space-y-6">
+    <div className="mx-auto max-w-2xl space-y-5">
       {/* ── Profile card ── */}
-      <div className="overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm">
-        {/* Banner */}
-        <div className="h-36 bg-gradient-to-r from-[#9B5941] to-[#C4865A]" />
+      <div className="overflow-hidden rounded-2xl bg-white shadow-[0_1px_4px_rgba(0,0,0,0.07),0_0_0_1px_rgba(0,0,0,0.04)]">
+        {/* Banner — mesh gradient */}
+        <div className="relative h-40 overflow-hidden bg-gradient-to-br from-[#7A3E28] via-[#9B5941] to-[#D4956A]">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(255,255,255,0.15)_0%,_transparent_60%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_rgba(0,0,0,0.15)_0%,_transparent_60%)]" />
+        </div>
 
         <div className="px-6 pb-6">
-          {/* Avatar overlapping banner */}
-          <div className="-mt-9 mb-4">
-            <Avatar
-              src={profile.avatar_url ?? undefined}
-              fallback={initials}
-              className={cn(
-                'h-[72px] w-[72px] text-xl text-white ring-4 ring-white',
-                !profile.avatar_url && colorClass
-              )}
-            />
-          </div>
-
-          <div className="flex items-start justify-between gap-4">
-            <div className="min-w-0">
-              <h1 className="text-xl font-bold text-gray-900">{displayName}</h1>
-              <p className="mt-0.5 text-sm text-gray-500">
-                @{profile.username}
-                {profile.year_group && ` · ${profile.year_group}`}
-              </p>
-              {profile.bio && (
-                <p className="mt-2 max-w-md text-sm text-gray-600">{profile.bio}</p>
-              )}
+          {/* Avatar + edit row */}
+          <div className="-mt-10 mb-4 flex items-end justify-between">
+            <div className="relative">
+              <Avatar
+                src={profile.avatar_url ?? undefined}
+                fallback={initials}
+                className={cn(
+                  'h-20 w-20 text-2xl text-white ring-4 ring-white shadow-md',
+                  !profile.avatar_url && colorClass
+                )}
+              />
             </div>
             <Button
               size="sm"
-              variant="outline"
               onClick={() => setIsEditOpen(true)}
-              className="shrink-0 gap-1.5"
+              className="mb-1 gap-1.5 border border-gray-200 bg-white text-gray-700 shadow-sm hover:bg-gray-50"
             >
               <Pencil className="h-3.5 w-3.5" />
               Edit Profile
             </Button>
           </div>
 
+          <div className="min-w-0">
+            <h1 className="text-xl font-bold text-gray-900">{displayName}</h1>
+            <p className="mt-0.5 text-sm text-gray-500">
+              @{profile.username}
+              {profile.year_group && (
+                <span className="ml-2 rounded-full bg-[#F5EDE8] px-2 py-0.5 text-[11px] font-medium text-[#9B5941]">
+                  {profile.year_group}
+                </span>
+              )}
+            </p>
+            {profile.bio && (
+              <p className="mt-2 max-w-md text-sm leading-relaxed text-gray-600">{profile.bio}</p>
+            )}
+          </div>
+
           {/* Stats */}
-          <div className="mt-5 flex gap-8 border-t border-gray-50 pt-5">
+          <div className="mt-5 grid grid-cols-3 divide-x divide-gray-100 rounded-xl bg-gray-50 text-center">
             {[
               { label: 'Connections', value: connections.length },
-              { label: 'Notes Shared', value: notes.length },
-              { label: 'Posts', value: posts.length },
+              { label: 'Notes',       value: notes.length       },
+              { label: 'Posts',       value: posts.length       },
             ].map(({ label, value }) => (
-              <div key={label} className="text-center">
+              <div key={label} className="py-3">
                 <p className="text-xl font-bold text-gray-900">{value}</p>
                 <p className="text-xs text-gray-400">{label}</p>
               </div>
@@ -433,8 +447,8 @@ export default function ProfilePage() {
 
       {/* ── Student details card ── */}
       {(profile.year_group || profile.house || (profile.subjects?.length ?? 0) > 0) && (
-        <div className="rounded-2xl border border-gray-100 bg-white p-5 shadow-sm">
-          <h2 className="mb-4 text-xs font-semibold uppercase tracking-wide text-gray-400">
+        <div className="rounded-2xl bg-white p-5 shadow-[0_1px_4px_rgba(0,0,0,0.07),0_0_0_1px_rgba(0,0,0,0.04)]">
+          <h2 className="mb-4 text-xs font-bold uppercase tracking-widest text-gray-400">
             Student Details
           </h2>
           <dl className="space-y-3 text-sm">
@@ -470,7 +484,7 @@ export default function ProfilePage() {
       )}
 
       {/* ── Posts / Notes tabs ── */}
-      <div className="overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm">
+      <div className="overflow-hidden rounded-2xl bg-white shadow-[0_1px_4px_rgba(0,0,0,0.07),0_0_0_1px_rgba(0,0,0,0.04)]">
         <div className="flex border-b border-gray-100">
           {(['posts', 'notes'] as const).map((tab) => (
             <button

@@ -25,7 +25,7 @@ export async function GET(request: NextRequest) {
 
   let query = supabase
     .from('posts')
-    .select('*, author:profiles(*)')
+    .select('*, author:profiles!author_id(*)')
     .order('created_at', { ascending: false })
     .limit(limit)
 
@@ -36,6 +36,7 @@ export async function GET(request: NextRequest) {
   const { data: rows, error } = await query
 
   if (error) {
+    console.error('[GET /api/posts] Supabase error:', error)
     return Response.json({ error: error.message }, { status: 500 })
   }
 
@@ -104,7 +105,7 @@ export async function POST(request: Request) {
   const { data: row, error } = await supabase
     .from('posts')
     .insert({ author_id: user.id, content: parsed.data.content })
-    .select('*, author:profiles(*)')
+    .select('*, author:profiles!author_id(*)')
     .single()
 
   if (error || !row) {

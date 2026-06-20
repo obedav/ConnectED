@@ -20,7 +20,7 @@ export function CreatePost() {
   const [error, setError] = useState<string | null>(null)
   const textareaRef = useRef<HTMLTextAreaElement>(null)
 
-  const firstName = profile?.full_name?.split(/\s+/)[0] ?? profile?.username ?? 'you'
+  const firstName = profile?.full_name?.split(/\s+/)[0] || profile?.username || 'you'
   const initials =
     profile?.full_name
       ?.trim()
@@ -150,9 +150,9 @@ export function CreatePost() {
   const isOverLimit = remaining < 0
 
   return (
-    <div className="rounded-2xl border border-gray-100 bg-white p-5 shadow-sm">
+    <div className="rounded-2xl bg-white shadow-[0_1px_4px_rgba(0,0,0,0.07),0_0_0_1px_rgba(0,0,0,0.04)]">
       <form onSubmit={handleSubmit}>
-        <div className="flex gap-3">
+        <div className="flex gap-3 p-4 pb-2">
           <Avatar
             fallback={initials}
             className={cn('mt-0.5 shrink-0 text-white', colorClass)}
@@ -172,28 +172,26 @@ export function CreatePost() {
         </div>
 
         {error && (
-          <p className="mt-2 text-xs text-red-600">{error}</p>
+          <p className="px-4 pb-2 text-xs text-red-600">{error}</p>
         )}
 
-        <div className="mt-3 flex items-center justify-between border-t border-gray-100 pt-3">
+        <div className="flex items-center justify-between border-t border-gray-100 px-4 py-3">
           <span
             className={cn(
               'text-xs tabular-nums',
               remaining <= 50
-                ? isOverLimit
-                  ? 'text-red-500'
-                  : 'text-orange-500'
-                : 'text-gray-400'
+                ? isOverLimit ? 'font-medium text-red-500' : 'font-medium text-amber-500'
+                : 'text-gray-300'
             )}
           >
-            {remaining}
+            {remaining <= 100 ? remaining : ''}
           </span>
 
           <Button
             type="submit"
             disabled={!content.trim() || isOverLimit || isPosting || !user}
-            className="bg-[#9B5941] px-5 text-white hover:bg-[#7D4532] focus-visible:ring-[#9B5941]/40 disabled:opacity-40"
             size="sm"
+            className="bg-[#9B5941] px-5 text-white hover:bg-[#7D4532] focus-visible:ring-[#9B5941]/40 disabled:opacity-40"
           >
             {isPosting ? 'Posting…' : 'Post'}
           </Button>

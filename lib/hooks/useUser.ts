@@ -28,15 +28,25 @@ export function useUser(): {
       queryKey: ['profile', user?.id],
       queryFn: async () => {
         if (!user?.id) return null
-        const { data } = await supabase
+        const { data, error } = await supabase
           .from('profiles')
           .select('*')
           .eq('id', user.id)
-          .single()
+          .maybeSingle()
+        if (error) {
+          console.warn('[useUser] profile fetch failed:', error.message)
+          return null
+        }
         return data
       },
       enabled: !!user?.id,
       staleTime: 1000 * 60 * 5,
+      retry: (failureCount, error) => {
+        // don't retry auth errors
+        const msg = (error as Error)?.message ?? ''
+        if (msg.includes('403') || msg.includes('401')) return false
+        return failureCount < 2
+      },
     })
 
   return {

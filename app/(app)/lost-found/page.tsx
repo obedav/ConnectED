@@ -299,8 +299,8 @@ export default function LostFoundPage() {
 
   useEffect(() => {
     fetch('/api/lost-items')
-      .then((r) => r.json())
-      .then((data: LostItem[]) => setItems(data))
+      .then((r) => (r.ok ? r.json() : []))
+      .then((data: unknown) => setItems(Array.isArray(data) ? (data as LostItem[]) : []))
       .catch(() => {})
       .finally(() => setIsLoading(false))
   }, [])

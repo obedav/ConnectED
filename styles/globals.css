@@ -25,6 +25,15 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+/* ── Scrollbar ───────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: #9ca3af; }
+
+/* Text selection */
+::selection { background: #9B5941; color: white; }
+
 /* ── Micro-interaction keyframes ─────────────────────────────── */
 
 @keyframes fade-in-up {
@@ -72,4 +81,16 @@ body {
 
 .toast-exit {
   animation: toast-out 0.18s ease-in both;
+}
+
+/* Shimmer skeleton animation */
+@keyframes shimmer {
+  from { background-position: -400px 0; }
+  to   { background-position:  400px 0; }
+}
+
+.shimmer {
+  background: linear-gradient(90deg, #f0ece8 25%, #e8e2dc 50%, #f0ece8 75%);
+  background-size: 400px 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
 }

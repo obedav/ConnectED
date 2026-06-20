@@ -16,7 +16,7 @@ export default async function FeedPage() {
     supabase.auth.getUser(),
     supabase
       .from('posts')
-      .select('*, author:profiles(*)')
+      .select('*, author:profiles!author_id(*)')
       .order('created_at', { ascending: false })
       .limit(FEED_PAGE_SIZE),
   ])
